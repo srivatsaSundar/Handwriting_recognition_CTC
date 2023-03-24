@@ -18,15 +18,15 @@ plt.rcParams['figure.figsize'] = (15.0, 10.0)
 #LANG = 'en'
 # You can use only one of these two
 # You HABE TO train the CTC model by yourself using word_classifier_CTC.ipynb
-MODEL_LOC_CHARS = f'G:\ocr\handwrittern_using_ctc\ocr-handwriting-models\char-clas\en\CharClassifier'
-MODEL_LOC_CTC = 'G:\ocr\handwrittern_using_ctc\ocr-handwriting-models\word-clas\CTC\Classifier1'
+MODEL_LOC_CHARS = f'/home/srivatsa/Documents/Handwriting_recognition_CTC/ocr-handwriting-models/char-clas/en/CharClassifier'
+MODEL_LOC_CTC = '/home/srivatsa/Documents/Handwriting_recognition_CTC/ocr-handwriting-models/word-clas/CTC/Classifier1'
 print("Loading models...")
 
 CHARACTER_MODEL = Model(MODEL_LOC_CHARS)
 CTC_MODEL = Model(MODEL_LOC_CTC, 'word_prediction')
 print("Models loaded.")
 
-IMG="G:\ocr\handwrittern_using_ctc\media\sample-2.png"
+IMG="/home/srivatsa/Documents/Handwriting_recognition_CTC/media/IMG20230308114842.jpg"
 img=cv2.imread(IMG)
 image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 # implt(image)

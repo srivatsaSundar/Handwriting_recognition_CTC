@@ -4,7 +4,6 @@ import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 import cv2
 import math
-
 from .helpers import *
 from .tfhelpers import Model
 
@@ -13,10 +12,10 @@ from .tfhelpers import Model
 print("Loading segmentation models...")
 location = os.path.dirname(os.path.abspath(__file__))
 CNN_model = Model(
-    os.path.join(location, 'G:\ocr\handwrittern_using_ctc\ocr-handwriting-models\gap-clas\CNN-CG')) 
+    os.path.join(location, '/home/srivatsa/Documents/Handwriting_recognition_CTC/ocr-handwriting-models/gap-clas/CNN-CG')) 
 CNN_slider = (60, 30)
 RNN_model = Model(
-    os.path.join(location, 'G:\ocr\handwrittern_using_ctc\ocr-handwriting-models\gap-clas\RNN\Bi-RNN-new'),
+    os.path.join(location, '/home/srivatsa/Documents/Handwriting_recognition_CTC/ocr-handwriting-models/gap-clas/RNN/Bi-RNN-new'),
     'prediction')
 RNN_slider = (60, 60)
 
