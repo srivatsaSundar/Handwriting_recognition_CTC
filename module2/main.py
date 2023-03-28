@@ -1,11 +1,14 @@
+import sys
 import nltk
 from nltk.corpus import stopwords
 from nltk.probability import FreqDist
 from nltk.cluster.util import cosine_distance
+import language_tool_python as language_check
 
 nltk.download('stopwords')
 nltk.download('punkt')
 stopwords_en=stopwords.words('english')
+tool=language_check.LanguageTool('en-US')
 
 def text_input():
     text1=input("Enter the text of the handwrittern:")
@@ -42,14 +45,39 @@ def similarity(text1_count_dict,text2_count_dict):
         vector2.append(text2_count_dict[word])
     return 1-cosine_distance(vector1,vector2)
 
+def grammer_check(text1,text2):
+    matches1=tool.check(text1)
+    matches2=tool.check(text2)
+    i=0
+    for match in matches1:
+        i+=1
+        print("The error in text1 is:",match)
+    j=0
+    for match in matches2:
+        j+=1
+        print("The error in text2 is:",match)
+    return i,j
+
 
 def main():
-    text1,text2=text_input()
-    text1=preprocess(text1)
-    text2=preprocess(text2)
-    text1_count_dict,text2_count_dict=frquent(text1,text2)
-    similaritys=similarity(text1_count_dict,text2_count_dict)
-    print("The similarity between the text is:{:4.2f}".format(similaritys*100))
+    while True:
+        print("1.Enter the text")
+        print("2.Exit")
+        choice=int(input("Enter your choice:"))
+        if choice==1:
+            text1,text2=text_input()
+            text1=preprocess(text1)
+            text2=preprocess(text2)
+            text1_count_dict,text2_count_dict=frquent(text1,text2)
+            i,j=grammer_check(text1,text2)
+            print("The number of errors in text1 is:",i)
+            print("The number of errors in text2 is:",j)
+            similaritys=similarity(text1_count_dict,text2_count_dict)
+            print("The similarity between the text is:{:4.2f}".format(similaritys*100))
+        elif choice==2:
+            sys.exit()
+        else:
+            print("Invalid choice")
           
 if __name__=="__main__":
     main()
